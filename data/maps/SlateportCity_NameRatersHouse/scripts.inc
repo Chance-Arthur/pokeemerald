@@ -31,9 +31,7 @@ SlateportCity_NameRatersHouse_EventScript_RateMonNickname::
 	specialvar VAR_RESULT, MonOTNameNotPlayer
 	special BufferMonNickname
 	goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-	msgbox SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, SlateportCity_NameRatersHouse_EventScript_ChangeNickname
-	goto_if_eq VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+	msgbox SlateportCity_NameRatersHouse_Text_FineName, MSGBOX_DEFAULT
 	end
 
 SlateportCity_NameRatersHouse_EventScript_CantRateEgg::
@@ -43,21 +41,6 @@ SlateportCity_NameRatersHouse_EventScript_CantRateEgg::
 
 SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT::
 	msgbox SlateportCity_NameRatersHouse_Text_MagnificentName, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_NameRatersHouse_EventScript_ChangeNickname::
-	msgbox SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe, MSGBOX_DEFAULT
-	call Common_EventScript_NameReceivedPartyMon
-	specialvar VAR_RESULT, TryPutNameRaterShowOnTheAir
-	special BufferMonNickname
-	goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
-	msgbox SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_NameRatersHouse_EventScript_NewNameDifferent::
-	msgbox SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName, MSGBOX_DEFAULT
 	release
 	end
 
@@ -71,32 +54,15 @@ SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname:
 	.string "Which POKéMON's nickname should\n"
 	.string "I critique?$"
 
-SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne:
+SlateportCity_NameRatersHouse_Text_FineName:
 	.string "Hmmm… {STR_VAR_1}, is it? That is\n"
 	.string "quite a fine name you bestowed.\p"
-	.string "But! What say you, if I were to\n"
-	.string "suggest a slightly better name?$"
-
-SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe:
-	.string "Ah, good. Then, what shall the new\n"
-	.string "nickname be?$"
-
-SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName:
-	.string "Done! From now on, this POKéMON\n"
-	.string "shall be known as {STR_VAR_1}!\p"
-	.string "It is a better name than before!\n"
-	.string "How fortunate for you!$"
+	.string "But! If you ever wish to change it, you\n"
+	.string "should feel free to do so.$"
 
 SlateportCity_NameRatersHouse_Text_DoVisitAgain:
 	.string "I see.\n"
 	.string "Do come visit again.$"
-
-SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior:
-	.string "Done! From now on, this POKéMON\n"
-	.string "shall be known as {STR_VAR_1}!\p"
-	.string "It looks no different from before,\n"
-	.string "and yet, this is vastly superior!\p"
-	.string "How fortunate for you!$"
 
 SlateportCity_NameRatersHouse_Text_MagnificentName:
 	.string "Hmmm… {STR_VAR_1} it is!\p"
