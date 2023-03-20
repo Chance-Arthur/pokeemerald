@@ -1,6 +1,9 @@
 #ifndef GUARD_POKEMON_H
 #define GUARD_POKEMON_H
 
+#define DAY_START 6
+#define NIGHT_START 18
+
 #include "sprite.h"
 
 // Property labels for Get(Box)MonData / Set(Box)MonData
