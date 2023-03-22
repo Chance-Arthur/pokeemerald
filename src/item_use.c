@@ -267,6 +267,29 @@ void ItemUseOutOfBattle_Rod(u8 taskId)
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
+void ItemUseOutOfBattle_ExpShare(u8 taskId)
+{
+    bool8  expShareOn = FlagGet(FLAG_EXP_SHARE);
+    if (!expShareOn)
+    {
+        FlagSet(FLAG_EXP_SHARE);
+        PlaySE(SE_EXP_MAX);
+        if (gTasks[taskId].tUsingRegisteredKeyItem) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_ExpShareTurnOn, Task_CloseCantUseKeyItemMessage);
+        else
+            DisplayItemMessage(taskId, 1, gText_ExpShareTurnOn, CloseItemMessage);
+    }
+    else
+    {
+        FlagClear(FLAG_EXP_SHARE);
+        PlaySE(SE_PC_OFF);
+        if (gTasks[taskId].tUsingRegisteredKeyItem) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_ExpShareTurnOff, Task_CloseCantUseKeyItemMessage);
+        else
+            DisplayItemMessage(taskId, 1, gText_ExpShareTurnOff, CloseItemMessage);
+    }
+}
+
 static void ItemUseOnFieldCB_Rod(u8 taskId)
 {
     StartFishing(ItemId_GetSecondaryId(gSpecialVar_ItemId));
