@@ -66,6 +66,7 @@
 #include "constants/weather.h"
 #include "constants/metatile_labels.h"
 #include "palette.h"
+#include "event_data.h"
 
 #define TAG_ITEM_ICON 5500
 
@@ -1012,7 +1013,7 @@ static void PCTurnOnEffect(struct Task *task)
     if (task->tTimer == 6)
     {
         task->tTimer = 0;
-        
+
         // Get where the PC should be, depending on where the player is looking.
         playerDirection = GetPlayerFacingDirection();
         switch (playerDirection)
@@ -1034,7 +1035,7 @@ static void PCTurnOnEffect(struct Task *task)
         // Update map
         PCTurnOnEffect_SetMetatile(task->tIsScreenOn, dx, dy);
         DrawWholeMapView();
-        
+
         // Screen flickers 5 times. Odd number and starting with the
         // screen off means the animation ends with the screen on.
         task->tIsScreenOn ^= 1;
@@ -1047,6 +1048,8 @@ static void PCTurnOnEffect(struct Task *task)
 static void PCTurnOnEffect_SetMetatile(s16 isScreenOn, s8 dx, s8 dy)
 {
     u16 metatileId = 0;
+    if(gSysPcFromPokenav)
+        return;
     if (isScreenOn)
     {
         // Screen is on, set it off
@@ -1084,6 +1087,10 @@ static void PCTurnOffEffect(void)
 
     // Get where the PC should be, depending on where the player is looking.
     u8 playerDirection = GetPlayerFacingDirection();
+    if(gSysPcFromPokenav){
+        gSysPcFromPokenav = FALSE;
+        return;
+    }
     switch (playerDirection)
     {
     case DIR_NORTH:
