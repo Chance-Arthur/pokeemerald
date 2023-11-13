@@ -688,7 +688,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
 
     invalidMons = 0;
 
-    while (invalidMons != 0x3F) // All mons are invalid.
+    while (invalidMons != (1 << PARTY_SIZE) - 1) // All mons are invalid.
     {
         #ifdef BUGFIX
             bestDmg = 255;
@@ -755,7 +755,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
         }
         else
         {
-            invalidMons = 0x3F; // No viable mon to switch.
+            invalidMons = (1 << PARTY_SIZE) - 1; // No viable mon to switch.
         }
     }
 
@@ -876,7 +876,7 @@ static bool8 ShouldUseItem(void)
             shouldUse = TRUE;
             break;
         case AI_ITEM_HEAL_HP:
-            paramOffset = GetItemEffectParamOffset(item, 4, 4);
+            paramOffset = GetItemEffectParamOffset(item, 4, ITEM4_HEAL_HP);
             if (paramOffset == 0)
                 break;
             if (gBattleMons[gActiveBattler].hp == 0)
@@ -949,7 +949,7 @@ static bool8 ShouldUseItem(void)
         {
             BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_USE_ITEM, 0);
             *(gBattleStruct->chosenItem + (gActiveBattler / 2) * 2) = item;
-            gBattleResources->battleHistory->trainerItems[i] = 0;
+            gBattleResources->battleHistory->trainerItems[i] = ITEM_NONE;
             return shouldUse;
         }
     }
