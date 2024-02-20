@@ -2250,11 +2250,11 @@ void SetMoveEffect(bool8 primary, u8 certain)
         gBattleScripting.battler = gBattlerAttacker;
     }
 
-    if (gBattleMons[gEffectBattler].ability == ABILITY_SHIELD_DUST && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+    if (gBattleMons[gEffectBattler].ability == ABILITY_SHIELD_DUST && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
         && !primary && gBattleCommunication[MOVE_EFFECT_BYTE] <= 9)
         INCREMENT_RESET_RETURN
 
-    if (gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+    if (gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
         && !primary && gBattleCommunication[MOVE_EFFECT_BYTE] <= 7)
         INCREMENT_RESET_RETURN
 
@@ -2304,10 +2304,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
 
-                if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                if (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
-                    gHitMarker &= ~HITMARKER_IGNORE_SAFEGUARD;
+                    gHitMarker &= ~HITMARKER_STATUS_ABILITY_EFFECT;
                 }
                 else
                 {
@@ -2316,7 +2316,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 RESET_RETURN
             }
             if ((IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_POISON) || IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_STEEL))
-                && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                && (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -2345,10 +2345,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_BRNPrevention;
-                if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                if (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
-                    gHitMarker &= ~HITMARKER_IGNORE_SAFEGUARD;
+                    gHitMarker &= ~HITMARKER_STATUS_ABILITY_EFFECT;
                 }
                 else
                 {
@@ -2357,7 +2357,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 RESET_RETURN
             }
             if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_FIRE)
-                && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                && (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -2401,10 +2401,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
 
-                    if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                    if (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                     {
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
-                        gHitMarker &= ~HITMARKER_IGNORE_SAFEGUARD;
+                        gHitMarker &= ~HITMARKER_STATUS_ABILITY_EFFECT;
                     }
                     else
                     {
@@ -2429,10 +2429,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
 
-                if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                if (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
-                    gHitMarker &= ~HITMARKER_IGNORE_SAFEGUARD;
+                    gHitMarker &= ~HITMARKER_STATUS_ABILITY_EFFECT;
                 }
                 else
                 {
@@ -2441,7 +2441,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 RESET_RETURN
             }
             if ((IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_POISON) || IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_STEEL))
-                && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                && (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -2484,10 +2484,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
             BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gEffectBattler].status1), &gBattleMons[gEffectBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
 
-            if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+            if (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STATUSED_BY_ABILITY;
-                gHitMarker &= ~HITMARKER_IGNORE_SAFEGUARD;
+                gHitMarker &= ~HITMARKER_STATUS_ABILITY_EFFECT;
             }
             else
             {
@@ -3359,7 +3359,7 @@ static void Cmd_getexp(void)
 
                     if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
                     {
-                        // check if the pokemon doesn't belong to the player
+                        // check if the Pokémon doesn't belong to the player
                         if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
                         {
                             i = STRINGID_EMPTYSTRING4;
@@ -4461,7 +4461,7 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
-        case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.
+        case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokémon.
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                 && !gProtectStructs[gBattlerAttacker].chargingTurn && gBattleMoves[gCurrentMove].target == MOVE_TARGET_BOTH
                 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
@@ -7308,7 +7308,7 @@ static void Cmd_forcerandomswitch(void)
             lastMonId = PARTY_SIZE;
             monsCount = PARTY_SIZE;
             minNeeded = 1;
-            battler2PartyId = gBattlerPartyIndexes[gBattlerTarget]; // there is only one pokemon out in single battles
+            battler2PartyId = gBattlerPartyIndexes[gBattlerTarget]; // there is only one Pokémon out in single battles
             battler1PartyId = gBattlerPartyIndexes[gBattlerTarget];
         }
 
@@ -7799,7 +7799,7 @@ static void Cmd_setsubstitute(void)
     }
     else
     {
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4; // one bit value will only work for pokemon which max hp can go to 1020(which is more than possible in games)
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4; // one bit value will only work for Pokémon which max hp can go to 1020(which is more than possible in games)
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
 
@@ -9180,7 +9180,7 @@ static void Cmd_tryswapitems(void)
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         }
-        // can't swap if two pokemon don't have an item
+        // can't swap if two Pokémon don't have an item
         // or if either of them is an enigma berry or a mail
         else if ((gBattleMons[gBattlerAttacker].item == ITEM_NONE && gBattleMons[gBattlerTarget].item == ITEM_NONE)
                  || gBattleMons[gBattlerAttacker].item == ITEM_ENIGMA_BERRY

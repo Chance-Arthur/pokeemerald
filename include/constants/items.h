@@ -23,7 +23,7 @@
 #define FIRST_BALL ITEM_MASTER_BALL
 #define LAST_BALL  ITEM_PREMIER_BALL
 
-// Pokemon Items
+// Pokémon Items
 #define ITEM_POTION 13
 #define ITEM_ANTIDOTE 14
 #define ITEM_BURN_HEAL 15
