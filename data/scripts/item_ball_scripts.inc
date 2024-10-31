@@ -419,7 +419,7 @@ NewMauville_Inside_EventScript_ItemParalyzeHeal::
 	end
 
 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail::
-	finditem ITEM_HARBOR_MAIL
+	finditem ITEM_SUPER_POTION
 	end
 
 AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope::
