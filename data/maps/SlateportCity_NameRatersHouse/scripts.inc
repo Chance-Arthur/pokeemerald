@@ -2,11 +2,7 @@ SlateportCity_NameRatersHouse_MapScripts::
 	.byte 0
 
 SlateportCity_NameRatersHouse_EventScript_NameRater::
-	lock
-	faceplayer
-	msgbox SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
-	goto_if_eq VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+	msgbox SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname, MSGBOX_NPC
 	end
 
 SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate::
@@ -62,10 +58,10 @@ SlateportCity_NameRatersHouse_EventScript_NewNameDifferent::
 	end
 
 SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname:
-	.string "Hi, hi! I'm the NAME RATER!\n"
-	.string "I'm the fortune-teller of names!\p"
-	.string "I shall be pleased to rate your\n"
-	.string "POKéMON's nickname.$"
+	.string "I used to be known as the NAME RATER!\n"
+	.string "I was the fortune-teller of names!\p"
+	.string "Giving your POKéMON a nickname is much\n"
+	.string "like giving it an item to hold. Try it!$"
 
 SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname:
 	.string "Which POKéMON's nickname should\n"
