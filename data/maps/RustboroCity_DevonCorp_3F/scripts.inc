@@ -255,7 +255,7 @@ RustboroCity_DevonCorp_3F_Text_ExplainExpShare:
  	.string "turned on, all POKéMON in your party\l"
  	.string "will be given EXP Points from battle.\p"
  	.string "They will get EXP Points even if they\n"
- 	.string "didn't actually battle.\p"
+ 	.string "didn't participate in the battle.\p"
 	.string "I would say EXP. SHARE is quite useful\n"
 	.string "for raising weak POKéMON.$"
 
